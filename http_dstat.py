@@ -4,7 +4,7 @@ import time
 
 class config:
     server_host: str = "0.0.0.0"
-    server_port: int = 2222
+    server_port: int = 8080
 
 class vars:
     total_rps: int = 0
