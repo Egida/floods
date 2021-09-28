@@ -53,12 +53,13 @@ def main():
         print(f"[SOCKET] -> LISTENING: {config.server_host}:{config.server_port}")
         threading.Thread(target=listener, args=[sock], daemon=True).start()
         print(f"[NOTE] -> THE LOGS WILL PRINT OUT WHEN THE STATUS CHANGES")
-        previous_data = 0
+        previous_data = (0, 0, 0, 0)
         while True:
-            if vars.total_bps == previous_data:
+            current_data = (vars.total_rps, vars.total_bps, vars.rps, vars.bps)
+            if current_data == previous_data:
                 time.sleep(.1)
                 continue
-            previous_data = vars.total_bps
+            previous_data = current_data
             print(f"[LOG] REQUESTS +=> {vars.rps} => {vars.total_rps} | BANDWIDTH +=> {bytecount(vars.bps)} => {bytecount(vars.total_bps)}")
             vars.rps = 0
             vars.bps = 0
