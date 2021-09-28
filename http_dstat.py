@@ -14,14 +14,15 @@ class vars:
 
 def handle(client: socket.socket) -> None:
     try:
-        vars.rps += 1
-        vars.total_rps += 1
-        request = client.recv(4096)
-        vars.bps += len(request)
-        vars.total_bps += len(request)
-        response_content = "<!DOCTYPE html><html><head><title>HTTP DSTAT</title></head><body><center><h1>HTTP DSTAT</h1></center></body></html>"
-        response = f"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length: {len(response_content)}\r\n\r\n{response_content}"
-        client.send(response.encode())
+        while True:
+            request = client.recv(4096)
+            vars.rps += 1
+            vars.total_rps += 1
+            vars.bps += len(request)
+            vars.total_bps += len(request)
+            response_content = "<!DOCTYPE html><html><head><title>HTTP DSTAT</title></head><body><center><h1>HTTP DSTAT</h1></center></body></html>"
+            response = f"HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length: {len(response_content)}\r\n\r\n{response_content}"
+            client.send(response.encode())
     except Exception:
         pass
 
