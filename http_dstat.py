@@ -74,7 +74,7 @@ def main():
         exit()
     finally:
         print(f"[PROGRAM] -> STOPPED")
-        print(f"\r\n\r\n[STATISTICS]\r\nTOTAL_REQUESTS -> {vars.total_rps}\r\nTOTAL_BANDWIDTH -> {vars.total_bps}\r\n")
+        print(f"\r\n\r\n[STATISTICS]\r\nTOTAL_REQUESTS -> {vars.total_rps}\r\nTOTAL_BANDWIDTH -> {bytecount(vars.total_bps)}\r\n")
         try:
             sock.close()
         except Exception:
