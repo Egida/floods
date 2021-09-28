@@ -59,7 +59,7 @@ def main():
                 time.sleep(.1)
                 continue
             previous_data = vars.total_bps
-            print(f"[LOG] REQUESTS -> {vars.total_rps}; RPS -> {vars.rps}; | BANDWIDTH -> {bytecount(vars.total_bps)}; PKS -> {bytecount(vars.bps)}")
+            print(f"[LOG] REQUESTS +=> {vars.rps} => {vars.total_rps} | BANDWIDTH +=> {bytecount(vars.bps)} => {bytecount(vars.total_bps)}")
             vars.rps = 0
             vars.bps = 0
             time.sleep(1)
