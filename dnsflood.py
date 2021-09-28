@@ -1,5 +1,6 @@
 from scapy.all import *
 import threading
+import socket
 import time
 import sys
 
@@ -31,7 +32,6 @@ def dns(host, dns_server="1.1.1.1"):
                 sr1(packet, verbose=0, timeout=0)
                 sent += 1
         else:
-            import socket
             sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             packet = DNS(qd=DNSQR(qname=host))
             while True:
