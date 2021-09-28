@@ -60,7 +60,10 @@ def main():
                 time.sleep(.1)
                 continue
             previous_data = current_data
-            print(f"[LOG] REQUESTS +=> {vars.rps} => {vars.total_rps} | BANDWIDTH +=> {bytecount(vars.bps)} => {bytecount(vars.total_bps)}")
+            request_data = f"REQUESTS +=> {vars.rps} => {vars.total_rps}"
+            bandwidth_data = f"BANDWIDTH +=> {bytecount(vars.bps)} => {bytecount(vars.total_bps)}"
+            separator = " " * (28 - len(request_data)) + "|"
+            print(f"[LOG] {request_data} {separator} {bandwidth_data}")
             vars.rps = 0
             vars.bps = 0
             time.sleep(1)
