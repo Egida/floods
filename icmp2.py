@@ -33,7 +33,7 @@ def main():
                 sent += 1
                 if sent % 50 == 0:
                     print(f"Sent -> {sent}")
-                time.sleep(1 / 1000)
+                time.sleep(1 / 10000)
         elif args.random_source:
             packet = IP(dst=args.host) / ICMP() / ("X" * args.length)
             while True:
@@ -42,7 +42,7 @@ def main():
                 sent += 1
                 if sent % 50 == 0:
                     print(f"Sent -> {sent}")
-                time.sleep(1 / 100)
+                time.sleep(1 / 10000)
         else:
             packet = IP(dst=args.host) / ICMP() / ("X" * args.length)
             while True:
@@ -50,7 +50,7 @@ def main():
                 sent += 1
                 if sent % 50 == 0:
                     print(f"Sent -> {sent}")
-                time.sleep(1 / 1000)
+                time.sleep(1 / 10000)
     except KeyboardInterrupt:
         pass
 
