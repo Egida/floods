@@ -16,7 +16,7 @@ def main():
     parser.add_argument("host", nargs="?", metavar="HOST", type=str, help="Target host")
     parser.add_argument("-s", "--source", metavar="SOURCE", type=str, help="Spoof single custom source IP")
     parser.add_argument("-r", "--random-source", action="store_true", help="Spoof random source IP's")
-    parser.add_argument("-l", "--length", metavar="LENGTH", type=int, default=56, help="ICMP message lengtht")
+    parser.add_argument("-l", "--length", metavar="LENGTH", type=int, default=56, help="ICMP message length")
 
     args = parser.parse_args()
     sent = 0
